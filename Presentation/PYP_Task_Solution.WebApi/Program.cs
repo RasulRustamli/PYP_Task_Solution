@@ -1,9 +1,10 @@
+using PYP_Task_Solution.Infrastructure;
 using PYP_Task_Solution.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPersistenceServices();
-
+builder.Services.AddInfrastructureServices();
 
 
 
