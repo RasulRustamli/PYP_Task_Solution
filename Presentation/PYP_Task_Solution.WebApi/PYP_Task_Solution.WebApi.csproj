@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\PYP_Task_Solution.Aplication\PYP_Task_Solution.Aplication.csproj" />
     <ProjectReference Include="..\..\Infrastructure\PYP_Task_Solution.Infrastructure\PYP_Task_Solution.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\PYP_Task_Solution.Persistence\PYP_Task_Solution.Persistence.csproj" />
   </ItemGroup>

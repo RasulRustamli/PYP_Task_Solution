@@ -52,7 +52,7 @@ public class SheetService : ISheetService
                 ExcelSheets data = new ExcelSheets();
                 double defaultValue = 0;
                 DateTime defaultDate = DateTime.MinValue;
-                data.Segment = worksheet.Cells[row, 1]?.Value?.ToString()?.Trim() ?? $"None{noneCount++}";
+                data.Segment = worksheet.Cells[row, 1]?.Value?.ToString()?.Trim() ?? $"None{noneCount++}";   
                 data.Country = worksheet.Cells[row, 2]?.Value?.ToString()?.Trim() ?? $"None{noneCount++}";
                 data.Product = worksheet.Cells[row, 3]?.Value?.ToString()?.Trim() ?? $"None{noneCount++}";
                 data.DiscountBand = worksheet.Cells[row, 4]?.Value?.ToString()?.Trim() ?? "None";
@@ -82,4 +82,6 @@ public class SheetService : ISheetService
 
         return true;
     }
+
+
 }
