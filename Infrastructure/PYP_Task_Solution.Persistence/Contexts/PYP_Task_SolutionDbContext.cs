@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PYP_Task_Solution.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace PYP_Task_Solution.Persistence.Contexts
         {
 
         }
+        public DbSet<ExcelSheets> ExcelSheets { get; set; }
     }
 }

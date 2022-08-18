@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PYP_Task_Solution.Aplication.AutoMapper
 {
-    internal class AutoMapperProfile:Profile 
+    public class AutoMapperProfile:Profile 
     {
         public AutoMapperProfile()
         {

@@ -18,8 +18,4 @@
     <ProjectReference Include="..\PYP_Task_Solution.Domain\PYP_Task_Solution.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Commands\" />
-  </ItemGroup>
-
 </Project>

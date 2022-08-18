@@ -10,15 +10,21 @@ namespace PYP_Task_Solution.Aplication.Repositories;
 
 public interface IRepository<T> where T : BaseEntity
 {
-    Task<T> GetSingle(Expression<Func<T, bool>> filter = null);
+    Task<bool> AddAsync(T model);
 
-    Task<bool> AddAsync(T entity);
+    Task<bool> AddRangeAsync(List<T> datas);
 
-    Task<bool> UpdateAsync(T entity);
+    bool Remove(T model);
 
-    Task<bool> DeleteAsync(T entity);
+    Task<bool> RemoveAsync(string id);
+
+    bool RemoveRange(List<T> datas);
+
+    bool Update(T model);
+
+    Task<int> SaveAsync();
     IQueryable<T> GetAll();
     IQueryable<T> GetWhere(Expression<Func<T, bool>> method);
-    
+    Task<T> GetSingleAsync(Expression<Func<T, bool>> method);
     Task<T> GetByIdAsync(string id);
 }

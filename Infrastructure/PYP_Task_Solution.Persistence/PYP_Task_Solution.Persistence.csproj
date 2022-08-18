@@ -22,4 +22,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\PYP_Task_Solution.Aplication\PYP_Task_Solution.Aplication.csproj" />
+    <ProjectReference Include="..\..\Core\PYP_Task_Solution.Domain\PYP_Task_Solution.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
