@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using PYP_Task_Solution.Aplication.AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace PYP_Task_Solution.Aplication
         public static void AddAplicationServices(this IServiceCollection services)
         {
             services.AddMediatR(typeof(ServiceRegistration));
+            services.AddAutoMapper(typeof(AutoMapperProfile));
         }
     }
 }

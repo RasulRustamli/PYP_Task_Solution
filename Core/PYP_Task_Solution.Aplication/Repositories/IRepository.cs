@@ -1,4 +1,5 @@
-﻿using PYP_Task_Solution.Domain.Entities.Common;
+﻿using Microsoft.EntityFrameworkCore;
+using PYP_Task_Solution.Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,4 +28,5 @@ public interface IRepository<T> where T : BaseEntity
     IQueryable<T> GetWhere(Expression<Func<T, bool>> method);
     Task<T> GetSingleAsync(Expression<Func<T, bool>> method);
     Task<T> GetByIdAsync(string id);
+    DbSet<T> Table { get; }
 }

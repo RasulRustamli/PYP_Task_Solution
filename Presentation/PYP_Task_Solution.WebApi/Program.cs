@@ -1,6 +1,7 @@
 using PYP_Task_Solution.Aplication;
 using PYP_Task_Solution.Infrastructure;
 using PYP_Task_Solution.Persistence;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,11 +10,16 @@ builder.Services.AddInfrastructureServices();
 builder.Services.AddAplicationServices();
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 

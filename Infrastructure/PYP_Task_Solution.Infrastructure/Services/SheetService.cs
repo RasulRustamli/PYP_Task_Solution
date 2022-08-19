@@ -2,6 +2,7 @@
 using OfficeOpenXml;
 using PYP_Task_Solution.Aplication.DTOs;
 using PYP_Task_Solution.Aplication.Services;
+using PYP_Task_Solution.Aplication.Utils.Enums;
 using PYP_Task_Solution.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,42 @@ namespace PYP_Task_Solution.Infrastructure.Services;
 
 public  class SheetService : ISheetService
 {
+    public async Task<(string? filePath, string? fileDirectory)> CreateExcelFileAsync(ReportType reportType, List<ReportDto> reportDtos)
+    {
+        string pathWithNewDirectory = $"{Directory.GetCurrentDirectory()}/wwwroot/raport-file/{Guid.NewGuid().ToString()}";
+        Directory.CreateDirectory(pathWithNewDirectory);
+        if (!Directory.Exists(pathWithNewDirectory)) return (null, null);
+        string fileName = $"{reportType + "-" + DateTime.Now.ToString("dd.MMMM.yyyy HH:mm:ss")}.xlsx".Replace(":", "-");
+        var filePath = $"{pathWithNewDirectory}/{fileName}";
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        using var package = new ExcelPackage();
+        var workSheet = package.Workbook.Worksheets.Add("Sheet1").Cells[1, 1].LoadFromCollection(reportDtos, true);
+        try
+        {
+            await package.SaveAsAsync(filePath);
+            return (filePath, pathWithNewDirectory);
+        }
+        catch
+        {
+            return (null, null);
+        }
+    }
+
+    public bool DeletePath(string path)
+    {
+        if (!Directory.Exists(path)) return false;
+        try
+        {
+            DirectoryInfo directory = new DirectoryInfo(path);
+            directory.Delete(true);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     public async Task<bool> FileAditionalCheckAsync(IFormFile file)
     {
         try
@@ -44,6 +81,8 @@ public  class SheetService : ISheetService
         }
 
     }
+
+  
 
     public bool TemplateValidateCheck(IFormFile file)
     {
