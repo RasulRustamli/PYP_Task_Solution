@@ -14,6 +14,7 @@ namespace PYP_Task_Solution.Infrastructure
         public static void AddInfrastructureServices(this IServiceCollection services)
         {
             services.AddScoped<ISheetService, SheetService>();
+            services.AddScoped<IEmailService, EmailService>();
         }
     }
 }

@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="6.0.6" />
+    <PackageReference Include="SendGrid" Version="9.28.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\PYP_Task_Solution.Aplication\PYP_Task_Solution.Aplication.csproj" />
+    <ProjectReference Include="..\PYP_Task_Solution.Persistence\PYP_Task_Solution.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

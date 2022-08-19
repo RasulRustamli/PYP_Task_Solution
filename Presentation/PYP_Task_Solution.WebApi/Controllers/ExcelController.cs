@@ -28,6 +28,12 @@ public class ExcelController : ControllerBase
 
         return StatusCode((int)HttpStatusCode.OK, response);
     }
+    [HttpGet]
+    public async Task<IActionResult> SendReport([FromQuery] ReportQueryRequest reportQueryRequest )
+    {
+        ReportQueryResponse response = await _mediator.Send(reportQueryRequest);
 
+        return StatusCode((int)HttpStatusCode.OK, response);
+    }
         
 }

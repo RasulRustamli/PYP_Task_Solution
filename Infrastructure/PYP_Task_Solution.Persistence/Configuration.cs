@@ -18,5 +18,22 @@ public static class Configuration
             return configurationManager.GetConnectionString("Default");
         }
     }
+
+    static public Dictionary<string, string> EmailConfiguration
+    {
+        get
+        {
+            ConfigurationManager c = new();
+            c.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/PYP_Task_Solution.WebApi"));
+            c.AddJsonFile("appsettings.json");
+
+            var config = new Dictionary<string, string>()
+            {
+             {"ApiKey", $"{c.GetSection("SendGrid:ApiKey").Value}"},
+             {"From",$"{c.GetSection("SendGrid:From").Value}"},
+            };
+            return config;
+        }
+    }
 }
 
