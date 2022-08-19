@@ -2,6 +2,8 @@ using PYP_Task_Solution.Aplication;
 using PYP_Task_Solution.Infrastructure;
 using PYP_Task_Solution.Persistence;
 using System.Text.Json.Serialization;
+using FluentValidation.AspNetCore;
+using PYP_Task_Solution.Aplication.Features.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.WriteIndented = true;
-});
+}).AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<ReportQueryHandler>());
+
 
 
 builder.Services.AddEndpointsApiExplorer();
