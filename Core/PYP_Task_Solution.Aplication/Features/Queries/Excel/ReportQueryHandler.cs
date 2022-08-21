@@ -34,7 +34,7 @@ namespace PYP_Task_Solution.Aplication.Features.Queries
             (string? filePath, string? fileDirectory) = await _sheetService.CreateExcelFileAsync(request.ReportType, reportDto);
 
             if (fileDirectory == null) return new() { };
-            bool result = await _emailService.ReportSendEmail(request.AcceptorEmail, filePath);
+            bool result = await _emailService.ReportSendEmail(request.AcceptorEmail, filePath,request.ReportType);
             _sheetService.DeletePath(fileDirectory);
 
             return new() { };
