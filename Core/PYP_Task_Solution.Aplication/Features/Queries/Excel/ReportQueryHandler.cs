@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PYP_Task_Solution.Aplication.Services;
+using PYP_Task_Solution.Aplication.Utils;
 
 namespace PYP_Task_Solution.Aplication.Features.Queries
 {
@@ -30,14 +31,17 @@ namespace PYP_Task_Solution.Aplication.Features.Queries
             List<ReportDto> reportDto = await _excelRepository.Table
            .GetReportByTypeFromDb(request.ReportType, request.StartDate, request.EndDate)
            .ToListAsync();
-
+            if (reportDto == null) return new() { Success = false, Status = 404, Message = $"{ReturnMessage.SendMessage["NoData"]}" };
             (string? filePath, string? fileDirectory) = await _sheetService.CreateExcelFileAsync(request.ReportType, reportDto);
 
-            if (fileDirectory == null) return new() { };
+           
+            if (fileDirectory == null) return new() { Success = false, Status = 400, Message = $"{ReturnMessage.SendMessage["GenarateExcelError"]}" };
             bool result = await _emailService.ReportSendEmail(request.AcceptorEmail, filePath,request.ReportType);
+            if (!result) return new() { Success = false, Status = 400, Message = $"{ReturnMessage.SendMessage["EmailSendingError"]}" };
             _sheetService.DeletePath(fileDirectory);
 
-            return new() { };
+
+            return new() { Success = true, Status = 200, Message = $"{ReturnMessage.SendMessage["RaportSucceded"]}" };
         }
     }
 }

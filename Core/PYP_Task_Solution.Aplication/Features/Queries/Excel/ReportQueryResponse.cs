@@ -10,5 +10,6 @@ namespace PYP_Task_Solution.Aplication.Features.Queries
     {
         public bool Success { get; set; }
         public string? Message { get; set; }
+        public int Status { get; internal set; }
     }
 }
